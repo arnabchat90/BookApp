@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    
+    //Test Check in
     var app = angular.module('app', [
         // Angular modules 
         'ngAnimate',        // animations

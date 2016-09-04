@@ -7,8 +7,8 @@
     app.constant('routes', getRoutes());
     
     // Configure the routes and route resolvers
-    app.config(['$routeProvider', 'routes', routeConfigurator]);
-    function routeConfigurator($routeProvider, routes) {
+    app.config(['$routeProvider','$locationProvider', 'routes', routeConfigurator]);
+    function routeConfigurator($routeProvider, $locationProvider, routes) {
 
         routes.forEach(function (r) {
             $routeProvider.when(r.url, r.config);
@@ -37,6 +37,17 @@
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-lock"></i> Admin'
+                    }
+                }
+            },
+            {
+                url: '/register',
+                config: {
+                    title: 'register',
+                    templateUrl: 'app/register/register.html',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-sign-in"></i> Sign Up'
                     }
                 }
             }

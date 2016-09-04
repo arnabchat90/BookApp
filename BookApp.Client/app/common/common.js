@@ -6,8 +6,8 @@
     //  - common
     //  - logger
     //  - spinner
-    var commonModule = angular.module('common', []);
-
+    var commonModule = angular.module('common', ["ngResource", "ngCookies"]);
+   // angular.module("common").constant("webApiServerName", "http://localhost:9600");
     // Must configure the common service and set its 
     // events via the commonConfigProvider
     commonModule.provider('commonConfig', function () {
@@ -25,9 +25,9 @@
     });
 
     commonModule.factory('common',
-        ['$q', '$rootScope', '$timeout', 'commonConfig', 'logger', common]);
+        ['$q', '$rootScope', '$timeout', 'commonConfig', 'logger', 'authServ', 'persistanceService', common]);
 
-    function common($q, $rootScope, $timeout, commonConfig, logger) {
+    function common($q, $rootScope, $timeout, commonConfig, logger, authServ, persistanceService) {
         var throttles = {};
 
         var service = {
@@ -41,6 +41,8 @@
             debouncedThrottle: debouncedThrottle,
             isNumber: isNumber,
             logger: logger, // for accessibility
+            authServ: authServ,
+            persistanceService: persistanceService,
             textContains: textContains
         };
 

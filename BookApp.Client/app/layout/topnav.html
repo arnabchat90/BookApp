@@ -1,4 +1,5 @@
-﻿<nav class="navbar navbar-fixed-top navbar-inverse">
+﻿<nav class="navbar navbar-fixed-top navbar-inverse" data-ng-controller="topnav as vm">
+<!--<nav class="navbar navbar-fixed-top navbar-inverse">-->
     <div class="navbar-header">
         <a href="/" class="navbar-brand"><span class="brand-title">Book App</span></a>
         <a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -11,12 +12,15 @@
         <div class="pull-right navbar-logo">
             <ul class="nav navbar-nav pull-right">
                 <li>
-                    <a href="https://www.linkedin.com/in/arnab-chatterjee-749a11ab" target="_blank">
-                        Created By Arnab Chatterjee
+                    <a href="#" target="_blank">
+                        BookApp
                     </a>
                 </li>
-                
+
             </ul>
+            <div class="nav navbar-nav" data-ng-show="vm.isLoggedIn">
+                <div>{{vm.firstName}} {{vm.LastName}}<span><button class="btn btn-danger" data-ng-click="vm.logOut()">Log out</button></span></div>
+            </div>
         </div>
     </div>
 </nav>

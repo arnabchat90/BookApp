@@ -6,7 +6,7 @@
         //var varLoggedIn = false;
         var vm = this;
         vm.varLoggedIn = false;
-        persistanceService.setCookieData("isLoggedIn", false);
+      //  persistanceService.setCookieData("isLoggedIn", false);
         vm.message = "";
         vm.token = "";
         //vm.userData = {
@@ -74,9 +74,9 @@
 
         }
 
-        function setVarLoggedIn(loggingResult) {
-            vm.varLoggedIn = loggingResult;
-        }
+        //function setVarLoggedIn(loggingResult) {
+        //    vm.varLoggedIn = loggingResult;
+        //}
 
         function isLoggedIn() {
             var varLogin = (persistanceService.getCookieData("isLoggedIn") === "true");

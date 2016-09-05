@@ -330,16 +330,32 @@ namespace BookApp.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
+            var user = new ApplicationUser() {
+                UserName = model.UserName,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email
+            };
+            
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
+           
 
             return Ok();
+        }
+
+        [Route("GetCurrentUserInfo")]
+        public ApplicationUser GetCurrentUserInfo()
+        {
+            ApplicationUser user =
+                System.Web.HttpContext.Current.GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>()
+                    .FindById(RequestContext.Principal.Identity.GetUserId());
+            return user;
         }
 
         // POST api/Account/RegisterExternal

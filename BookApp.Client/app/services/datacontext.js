@@ -2,14 +2,15 @@
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['common', datacontext]);
+    angular.module('app').factory(serviceId, ['common', '$resource', datacontext]);
 
-    function datacontext(common) {
+    function datacontext(common, $resource) {
         var $q = common.$q;
 
         var service = {
             getPeople: getPeople,
-            getMessageCount: getMessageCount
+            getMessageCount: getMessageCount,
+            getCurrentUserInfo: getCurrentUserInfo
         };
 
         return service;
@@ -27,6 +28,21 @@
                 { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
             ];
             return $q.when(people);
+        }
+
+        function getCurrentUserInfo() {
+            
+            //if (token == null) {
+            //    return null;
+            //}
+            return {
+                getUserInfo: $resource("http://localhost:9600/" + "api/Account/GetCurrentUserInfo", null,
+                {
+                    "get": {
+                        headers: {'Authorization' : 'Bearer ' + common.authServ.token()}
+                    }
+                })
+            }
         }
     }
 })();

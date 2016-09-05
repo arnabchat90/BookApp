@@ -82,6 +82,11 @@ textarea.form-control {
     display: inline;
     display: block;
 }
+.user-info{
+    margin-top: 9px;
+    color: white;
+}
+
 
 .colorgraph {
   height: 5px;

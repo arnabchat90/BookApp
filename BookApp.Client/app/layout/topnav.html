@@ -18,8 +18,8 @@
                 </li>
 
             </ul>
-            <div class="nav navbar-nav" data-ng-show="vm.isLoggedIn">
-                <div>{{vm.firstName}} {{vm.LastName}}<span><button class="btn btn-danger" data-ng-click="vm.logOut()">Log out</button></span></div>
+            <div class="nav navbar-nav user-info" data-ng-show="vm.isLoggedIn">
+                <div>{{vm.firstName}} {{vm.lastName}}<span><button class="btn btn-danger" data-ng-click="vm.logOut()">Log out</button></span></div>
             </div>
         </div>
     </div>

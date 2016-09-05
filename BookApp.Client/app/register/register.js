@@ -10,6 +10,8 @@
         var vm = this;
         vm.userData = {
             username: '',
+            firstName: '',
+            lastName:'',
             email: '',
             password: '',
             confirmPassword: ''

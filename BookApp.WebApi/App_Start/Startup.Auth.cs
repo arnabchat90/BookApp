@@ -10,12 +10,16 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using BookApp.WebApi.Providers;
 using BookApp.WebApi.Models;
+using Microsoft.Owin.Security.Facebook;
 
 namespace BookApp.WebApi
 {
     public partial class Startup
     {
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
+        public static GoogleOAuth2AuthenticationOptions googleAuthOptions { get; private set; }
+        public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
+
 
         public static string PublicClientId { get; private set; }
 
@@ -56,14 +60,32 @@ namespace BookApp.WebApi
             //    consumerSecret: "");
 
             //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            //    appId: "180831739011998",
+            //    appSecret: "c658c2b5ff20ed1eb590f6d4ad4d6801");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
-            //    ClientId = "",
-            //    ClientSecret = ""
+            //    ClientId = "376757155169-717snin2lghce6ohsfh36c72bsfnqhu5.apps.googleusercontent.com",
+            //    ClientSecret = "n_9s1ehwaEEgjjBfWgZvVdVV"
             //});
+
+            //Configure Google External Login
+            googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "376757155169-717snin2lghce6ohsfh36c72bsfnqhu5.apps.googleusercontent.com",
+                ClientSecret = "n_9s1ehwaEEgjjBfWgZvVdVV",
+                Provider = new GoogleAuthProvider()
+            };
+            app.UseGoogleAuthentication(googleAuthOptions);
+
+            //Configure Facebook External Login
+            facebookAuthOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "180831739011998",
+                AppSecret = "c658c2b5ff20ed1eb590f6d4ad4d6801",
+                Provider = new FacebookAuthProvider()
+            };
+            app.UseFacebookAuthentication(facebookAuthOptions);
         }
     }
 }

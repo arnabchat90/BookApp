@@ -1,18 +1,26 @@
-﻿<div class="login pull-right col-md-12 hidden-xs" data-ng-controller="login as vm">
-    <div class="panel panel-info" data-ng-hide="vm.isLoggedIn">
-        <div class="panel-heading">Login</div>
-        <div class="panel-body">
-            <div class="row user-form-control">
-                <span class="col-md-4">Username</span> <input class="col-md-8" type="text" data-ng-model="vm.userData.userName" id="txtUsername" />
+﻿<div class="login col-md-12 pull-right hidden-xs" data-ng-controller="login as vm">
+    <div class="row col-md-12">
+        <div class="col-md-6" data-ng-hide="vm.isLoggedIn">
+            <h2 class="form-login-heading">Login</h2>
+            <div>
+                <div class="row user-form-control">
+                    <span class="col-md-4">Username</span> <input class="col-md-8" type="text" data-ng-model="vm.userData.userName" id="txtUsername" />
+                </div>
+                <div class="row user-form-control">
+                    <span class="col-md-4">Password</span> <input class="col-md-8" type="password" data-ng-model="vm.userData.password" id="txtPassword" />
+                </div>
+                <div class="row user-form-control">
+                    <button class="col-md-4 btn btn-primary pull-right" id="btnLogin" data-ng-click="vm.attemptLogin()">Login</button>
+                    <a href="#/register" class="btn btn-success pull-right">Sign Up</a>
+                </div>
+                <div class="row user-form-control"><span>{{vm.message}}</span></div>
             </div>
-            <div class="row user-form-control">
-                <span class="col-md-4">Password</span> <input class="col-md-8" type="password" data-ng-model="vm.userData.password" id="txtPassword" />
-            </div>
-            <div class="row user-form-control">
-                <button class="col-md-4 btn btn-primary pull-right" id="btnLogin" data-ng-click="vm.attemptLogin()">Login</button>
-                <a href="#/register" class="btn btn-success pull-right">Sign Up</a>
-            </div>
-            <div class="row user-form-control"><span>{{vm.message}}</span></div>
+        </div>
+        <div class="col-md-6" data-ng-hide="vm.isLoggedIn">
+            <h2 class="form-login-heading">Social Logins</h2>
+            <p>Or you can login using one of the social logins below</p>
+            <button class="btn btn-large btn-facebook btn-block" type="button" data-ng-click="vm.authExternalProvider('Facebook')"><i class="fa fa-facebook"></i> | Connect with Facebook</button>
+            <button class="btn btn-large btn-google-plus btn-block" type="button" data-ng-click="vm.authExternalProvider('Google')"><i class="fa fa-google-plus"></i> | Connect with Google+</button>
         </div>
     </div>
 </div>

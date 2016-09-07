@@ -241,12 +241,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="AuthContext.cs" />
+    <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Entities\Client.cs" />
+    <Compile Include="Entities\RefreshToken.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Migrations\201609032114419_InitialCreate.cs" />
     <Compile Include="Migrations\201609032114419_InitialCreate.Designer.cs">
       <DependentUpon>201609032114419_InitialCreate.cs</DependentUpon>
@@ -255,12 +260,20 @@
     <Compile Include="Migrations\201609041843283_FirstName.Designer.cs">
       <DependentUpon>201609041843283_FirstName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609062102105_AddedTables.cs" />
+    <Compile Include="Migrations\201609062102105_AddedTables.Designer.cs">
+      <DependentUpon>201609062102105_AddedTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Providers\FacebookAuthProvider.cs" />
+    <Compile Include="Providers\GoogleAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -332,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609041843283_FirstName.resx">
       <DependentUpon>201609041843283_FirstName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609062102105_AddedTables.resx">
+      <DependentUpon>201609062102105_AddedTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

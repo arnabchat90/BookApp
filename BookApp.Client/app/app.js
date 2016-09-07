@@ -14,9 +14,14 @@
         // 3rd Party Modules
         'ui.bootstrap'      // ui-bootstrap (ex: carousel, pagination, dialog)
     ]);
-    
+    var serviceBase = 'http://localhost:9600/';
+    //app.constant('ngAuthSettings', {
+    //    apiServiceBaseUri: serviceBase,
+    //    clientId: 'BookApp'
+    //});
+
     // Handle routing errors and success events
-    app.run(['$route',  function ($route) {
-            // Include $route to kick start the router.
-        }]);        
+    app.run(['$route', function ($route) {
+        // Include $route to kick start the router.
+    }]);
 })();

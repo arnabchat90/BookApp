@@ -1,12 +1,12 @@
 ﻿(function () {
     "use strict";
-    angular.module("common").factory("authServ", ["userAccount", "$location", "$q","persistanceService", authServ]);
+    angular.module("common").factory("authServ", ["userAccount", "$location", "$q", "persistanceService", "$window","$resource", authServ]);
 
-    function authServ(userAccount, $location, $q, persistanceService) {
+    function authServ(userAccount, $location, $q, persistanceService, $window,$resource) {
         //var varLoggedIn = false;
         var vm = this;
         vm.varLoggedIn = false;
-      //  persistanceService.setCookieData("isLoggedIn", false);
+        //  persistanceService.setCookieData("isLoggedIn", false);
         vm.message = "";
         vm.token = "";
         //vm.userData = {
@@ -20,7 +20,8 @@
             register: register,
             isLoggedIn: isLoggedIn,
             message: message,
-            token: token
+            token: token,
+            loginExternal: loginExternal
         }
 
         return service;
@@ -36,7 +37,7 @@
                         persistanceService.clearCookieData("message");
                         vm.message = "";
                         vm.token = data.access_token;
-                        persistanceService.setCookieData("token",vm.token);
+                        persistanceService.setCookieData("token", vm.token);
                         resolve();
                     },
                     function (response) {
@@ -59,10 +60,14 @@
         function register(userData) {
             //TODO : Call userAccount service to register user via the web api
             userAccount.registration.registerUser(userData, function (data) {
-                login(userData);
-                $location.path('/');
+                var loginPromise = login(data);
+                loginPromise.then(function () {
+                    $window.location.reload();
+                    $location.path("/");
+                }, function () {
+                });
             },
-                function(response) {
+                function (response) {
                     vm.message = response.statusText + "\r\n";
                     if (response.data.exceptionMessage)
                         vm.message += response.data.exceptionMessage;
@@ -72,6 +77,15 @@
                     persistanceService.setCookieData("message", vm.message);
                 });
 
+        }
+
+        function loginExternal(externalProviderUrl) {
+            return {
+                loginExternal: $resource(externalProviderUrl, null,
+                {
+                    "loginExternalUser": { method: "GET" }
+                })
+            }
         }
 
         //function setVarLoggedIn(loggingResult) {
